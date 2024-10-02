@@ -1,17 +1,37 @@
-# Python Program to find the area of triangle
+import math
 
-a = 5
-b = 6
-c = 7
+def calculate_triangle_area(a, b, c):
+    """Calculate the area of a triangle using Heron's formula."""
+    # Calculate the semi-perimeter
+    s = (a + b + c) / 2
+    
+    # Check if the sides form a valid triangle
+    if s <= a or s <= b or s <= c:
+        raise ValueError("The given sides do not form a valid triangle.")
+    
+    # Calculate and return the area
+    return math.sqrt(s * (s - a) * (s - b) * (s - c))
 
-# Uncomment below to take inputs from the user
-# a = float(input('Enter first side: '))
-# b = float(input('Enter second side: '))
-# c = float(input('Enter third side: '))
+def main():
+    try:
+        # Input: Uncomment for user inputs
+        # a = float(input('Enter first side: '))
+        # b = float(input('Enter second side: '))
+        # c = float(input('Enter third side: '))
+        
+        # Static values for testing
+        a, b, c = 5, 6, 7
+        
+        # Calculate the area
+        area = calculate_triangle_area(a, b, c)
+        
+        # Display the area
+        print(f'The area of the triangle with sides {a}, {b}, and {c} is: {area:.2f}')
+    
+    except ValueError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
-# calculate the semi-perimeter
-s = (a + b + c) / 2
-
-# calculate the area
-area = (s*(s-a)*(s-b)*(s-c)) ** 0.5
-print('The area of the triangle is %0.2f' %area)
+if __name__ == "__main__":
+    main()
